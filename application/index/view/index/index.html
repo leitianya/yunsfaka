@@ -1,0 +1,268 @@
+{extend name="conmm/main" /}
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        {:config('sysconf.name')} {:config('sysconf.houzui')}
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="#" class="am-icon-home">首页</a></li>
+    </ol>
+    <div class="tpl-content-scope">
+        <div class="note note-info">
+           {:config('sysconf.gtips')}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat blue">
+                <div class="visual">
+                    <i class="am-icon-comments-o"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$countDay}天 </div>
+                    <div class="desc"> 本站已稳定运行 </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat red">
+                <div class="visual">
+                    <i class="am-icon-bar-chart-o"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$orderCount}笔 </div>
+                    <div class="desc"> 总订单 </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat purple">
+                <div class="visual">
+                    <i class="am-icon-thumbs-up"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$checkOrder} </div>
+                    <div class="desc"> 已处理成功的订单 </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat green">
+                <div class="visual">
+                    <i class="am-icon-money"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$moneyCount} ￥</div>
+                    <div class="desc"> 总流水 </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="am-u-md-6 am-u-sm-12 row-mb">
+            <div class="tpl-portlet">
+                <div class="tpl-portlet-title">
+                    <div class="tpl-caption font-green ">
+                        <i class="am-icon-hand-grab-o"></i>
+                        <span> 人工代充</span>
+                    </div>
+
+                </div>
+
+                <div class="tpl-scrollable">
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 ">
+                            <form class="am-form am-form-horizontal" id="sgform" >
+                                <div class="am-form-group">
+                                    <label for="cid" class="am-u-sm-2 am-form-label">商品分类</label>
+                                    <div class="am-u-sm-10">
+                                        <select id="sgcid"  class="am-form-field am-round" >
+                                            <option value="0">请选择商品分类</option>
+                                            {foreach name="sclass" item="v"}
+                                            <option value="{$v.id}" >{$v.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="gid" class="am-u-sm-2 am-form-label">商品列表</label>
+                                    <div class="am-u-sm-10">
+                                        <select  class="am-form-field am-round"  id="glist">
+                                            <option value="">请选择商品</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="money" class="am-u-sm-2 am-form-label">商品单价</label>
+                                    <div class="am-u-sm-10">
+                                        <input type="text" id="money" class="am-form-field am-round" disabled="disabled" value=""  >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="am-form-group">
+                                    <label for="otitle" class="am-u-sm-2 am-form-label">购买数量</label>
+                                    <div class="am-u-sm-10">
+                                        <input id="number"  class="am-form-field am-round" type="text" value="1"  >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="am-form-group" id="okshop">
+
+                                    <div class="am-u-sm-12 am-u-sm-push-5">
+                                        <a onclick="okSgOrder()" class="am-btn am-btn-primary">确认购买</a>
+                                    </div>
+
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="am-u-md-6 am-u-sm-12 row-mb">
+            <div class="tpl-portlet">
+                <div class="tpl-portlet-title">
+                    <div class="tpl-caption font-red ">
+                        <i class="am-icon-credit-card-alt"></i>
+                        <span> 自动提卡</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="tpl-scrollable">
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 ">
+                            <form class="am-form am-form-horizontal" id="zsgform" >
+                                <div class="am-form-group">
+                                    <label for="zcid" class="am-u-sm-2 am-form-label">商品分类</label>
+                                    <div class="am-u-sm-10">
+                                        <select id="zsgcid"  class="am-form-field am-round" >
+                                            <option value="0">请选择商品分类</option>
+                                            {foreach name="kclass" item="v"}
+                                            <option value="{$v.id}" >{$v.name}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="zgid" class="am-u-sm-2 am-form-label">商品列表</label>
+                                    <div class="am-u-sm-10">
+                                        <select  class="am-form-field am-round"  id="zglist">
+                                            <option value="">请选择商品</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="money" class="am-u-sm-2 am-form-label">商品单价</label>
+                                    <div class="am-u-sm-10">
+                                        <input type="text" id="zmoney" class="am-form-field am-round" disabled="disabled" value=""  >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="am-form-group">
+                                    <label for="zotitle" class="am-u-sm-2 am-form-label">购买数量</label>
+                                    <div class="am-u-sm-10">
+                                        <input id="znumber"  class="am-form-field am-round" type="text" value="1"  >
+                                    </div>
+                                </div>
+
+
+
+                                <div class="am-form-group" id="zokshop">
+
+                                    <div class="am-u-sm-12 am-u-sm-push-5">
+                                        <a onclick="okZdOrder()" class="am-btn am-btn-primary">确认购买</a>
+                                    </div>
+
+                                </div>
+
+
+
+                            </form>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div  class="am-u-md-6 am-u-sm-12 row-mb">
+
+
+        </div>
+        <div class="am-u-md-6 am-u-sm-12 row-mb">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+    {/block}
+
+{block name="footsrc"}
+<script>
+    var getGoodsUrl = "{:url('index/Index/getGoodsList')}";
+    var getGoodsInfo = "{:url('index/Index/getGoodsInfo')}";
+    var postSgOrder = "{:url('index/Index/postSgOrder')}";
+    var postZdOrder = "{:url('index/Index/postZdOrder')}";
+
+</script>
+    <script src="{$Think.STATIC_PATH}/js/index/index.js"></script>
+    {if condition="($is_shouji == 2) && ($tips != null) "}
+    <script>
+        $(function(){
+            $.post('{:url(\'index/Index/getTips\')}',{},function(result){
+
+                if(result.code == 0){
+                    layer.alert(result.msg,{icon:2})
+                }else{
+                    layer.open({
+                        type: 1,
+                        title: '公告',
+
+                        content: result.data
+                    });
+                }
+            });
+        });
+    </script>
+    {/if}
+
+
+{/block}
+

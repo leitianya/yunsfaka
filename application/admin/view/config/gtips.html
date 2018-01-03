@@ -1,0 +1,79 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        系统设置
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-cogs">系统设置</a></li>
+
+
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 公告设置
+            </div>
+
+
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal" method="post" action="{:url('admin/Config/gtips')}">
+                        <div class="am-form-group">
+                            <label for="altps" class="am-u-sm-3 am-form-label">首页弹出公告</label>
+                            <div class="am-u-sm-9">
+                                <textarea name="altps" class="" rows="10" id="altps" placeholder="首页弹出公告文字">{$info.altps}</textarea>
+
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="gtips" class="am-u-sm-3 am-form-label">公告</label>
+                            <div class="am-u-sm-9">
+                                <textarea name="gtips" class="" rows="10" id="gtips" placeholder="首页的公告设置">{$info.gtips}</textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="foot" class="am-u-sm-3 am-form-label">友情链接</label>
+                            <div class="am-u-sm-9">
+                                <textarea name="foot" class="" rows="10" id="foot" placeholder="友情链接、备案信息等">{$info.foot}</textarea>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{/block}

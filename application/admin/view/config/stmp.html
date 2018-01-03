@@ -1,0 +1,84 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        系统设置
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-cogs">系统设置</a></li>
+
+
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 邮件设置
+            </div>
+
+
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal" method="post" action="{:url('admin/Config/stmp')}">
+                        <div class="am-form-group">
+                            <label for="server" class="am-u-sm-3 am-form-label">SMTP服务器</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" value="{$info.server}" name="server" id="server" placeholder="SMTP服务器 如stmp.qq.com">
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="port" class="am-u-sm-3 am-form-label">SMTP服务器端口</label>
+                            <div class="am-u-sm-9">
+                                <input type="text"  value="{$info.port}" name="port" id="port" placeholder="SMTP服务器端口">
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="user" class="am-u-sm-3 am-form-label">STMP账号</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" value="{$info.user}" name="user" id="user" placeholder="如53331323@qq.com">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="passwd" class="am-u-sm-3 am-form-label">SMTP密码</label>
+                            <div class="am-u-sm-9">
+                                <input type="password" value="{$info.passwd}" name="passwd"  id="passwd" placeholder="SMTP密码">
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="submit" class="am-btn am-btn-primary">保存修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{/block}

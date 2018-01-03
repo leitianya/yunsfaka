@@ -1,0 +1,177 @@
+
+{include file='conmm/head' /}
+
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="{$Think.STATIC_PATH}/assets/img/logo.png" alt="">
+        </a>
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+
+
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="tpl-header-list-user-nick">管理员</span><span class="tpl-header-list-user-ico"> <img src="http://q4.qlogo.cn/headimg_dl?dst_uin={:config('sysconf.kfqq')}&spec=100"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="javascript:;" onclick="updatePwd('{:url(\'admin/Index/updatePwd\')}')"><span class="am-icon-cog"></span> 修改密码</a></li>
+                    <li><a href="{:url('admin/Index/logout')}"><span class="am-icon-power-off"></span> 退出</a></li>
+                </ul>
+            </li>
+            <li><a href="{:url('admin/Index/logout')}" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+        </ul>
+    </div>
+</header>
+
+
+
+
+
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            系统菜单
+        </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+                <li class="tpl-left-nav-item">
+                    <a href="{:url('admin/Index/index')}" class="nav-link {if condition="($controller_name eq 'Index') && ($action_name eq 'index')"} active {/if}">
+                        <i class="am-icon-home"></i>
+                        <span>首页</span>
+                    </a>
+                </li>
+
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list {if condition="($controller_name eq 'Config')"} active {/if}">
+                        <i class="am-icon-cogs"></i>
+                        <span>系统设置</span>
+                    {if condition="($controller_name eq 'Config')"}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    {else /}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    {/if}
+
+
+
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" {if condition="($controller_name eq 'Config')"} style="display: block;" {/if} >
+                        <li >
+                            <a href="{:url('admin/Config/index')}" {if condition="($controller_name eq 'Config') && ($action_name eq 'index')"} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>基础设置</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+                            <a href="{:url('admin/Config/stmp')}" {if condition="($controller_name eq 'Config') && ($action_name eq 'stmp')"} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>邮件设置</span>
+                                <i class="am-icon-mail-forward tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+                            <a href="{:url('admin/Config/gtips')}" {if condition="($controller_name eq 'Config') && ($action_name eq 'gtips')"} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>公告设置</span>
+                                <i class="am-icon-bullhorn tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list {if condition="($controller_name eq 'Order')"} active {/if}">
+                        <i class="am-icon-table"></i>
+                        <span>订单管理</span>
+                    {if condition="($controller_name eq 'Order')"}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    {else /}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    {/if}
+
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" {if condition="($controller_name eq 'Order')"} style="display: block;" {/if}>
+                        <li>
+                            <a href="{:url('admin/Order/index')}" {if condition="($controller_name eq 'Order')"} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>订单列表</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="javascript:;" class="nav-link tpl-left-nav-link-list {if condition="($controller_name eq 'Goods') OR ($controller_name eq 'Yclass')"} active {/if}">
+                        <i class="am-icon-shopping-cart"></i>
+                        <span>商品管理</span>
+                    {if condition="($controller_name eq 'Goods') OR ($controller_name eq 'Yclass')"}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right tpl-left-nav-more-ico-rotate"></i>
+                    {else /}
+                    <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                    {/if}
+                    </a>
+                    <ul class="tpl-left-nav-sub-menu" {if condition="($controller_name eq 'Goods') OR ($controller_name eq 'Yclass')"} style="display: block;" {/if}>
+                        <li>
+                            <a href="{:url('admin/Yclass/index')}" {if condition="($controller_name eq 'Yclass')"} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>商品分类</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+
+                            <a href="{:url('admin/Goods/index')}" {if condition="($controller_name eq 'Goods') "} class="nav-link active" {/if}>
+                                <i class="am-icon-angle-right"></i>
+                                <span>商品列表</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            <li class="tpl-left-nav-item">
+                <a href="{:url('admin/Index/clearCache')}" class="nav-link tpl-left-nav-link-list">
+                    <i class="am-icon-terminal"></i>
+                    <span>清除缓存<span>
+
+                </a>
+            </li>
+
+                <li class="tpl-left-nav-item">
+                    <a href="{:url('admin/Index/logout')}" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-key"></i>
+                        <span>退出<span>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    {block name="main"}中间内容{/block}
+
+</div>
+
+
+{include file='conmm/foot' /}
+

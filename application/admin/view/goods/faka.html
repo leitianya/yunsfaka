@@ -1,0 +1,97 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        添加自动发卡商品
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-cogs">添加商品成功后在商品列表导入卡密</a></li>
+
+
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 添加商品
+            </div>
+
+
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal" method="post" action="{:url('admin/Goods/create')}">
+                        <div class="am-form-group">
+                            <label for="name" class="am-u-sm-3 am-form-label">商品名称</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" value="" name="name" id="name" placeholder="商品名称" required>
+                                <input type="hidden" value="2" name="type" >
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <label for="cid" class="am-u-sm-3 am-form-label">商品分类</label>
+                            <div class="am-u-sm-9">
+                                <select name="cid" id="cid">
+                                    {foreach name="list" item="v"}
+                                    <option value="{$v.id}">{$v.name}</option>
+                                    {/foreach}
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="money" class="am-u-sm-3 am-form-label">商品单价</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" value="0" name="money" id="money" placeholder="输商品价格" required>
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="status" class="am-u-sm-3 am-form-label">状态</label>
+                            <div class="am-u-sm-9">
+                                上架<input type="radio" value="1" name="status" checked >
+                                下架<input type="radio" value="2" name="status" >
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <label for="ord" class="am-u-sm-3 am-form-label">排序</label>
+                            <div class="am-u-sm-9">
+                                <input type="text" value="0" name="ord" id="ord" placeholder="整数  输入值越大 排名越靠前">
+                            </div>
+                        </div>
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                <a href="javascript:history.go(-1);" class="am-btn am-btn-warning">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{/block}

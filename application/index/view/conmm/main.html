@@ -1,0 +1,78 @@
+
+{include file='conmm/head' /}
+
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+
+            <div class="tpl-logo">
+                {:config('sysconf.name')} <i class="am-icon-skyatlas"></i>
+
+            </div>
+
+    </div>
+    <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+
+
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="tpl-header-list-user-nick"></span><span class="tpl-header-list-user-ico"> <img src="http://q4.qlogo.cn/headimg_dl?dst_uin={:config('sysconf.kfqq')}&spec=100"></span>
+                </a>
+
+            </li>
+
+        </ul>
+    </div>
+</header>
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">
+            菜单
+        </div>
+        <div class="tpl-left-nav-list">
+            <ul class="tpl-left-nav-menu">
+                <li class="tpl-left-nav-item">
+                    <a href="{:url('index/Index/index')}" class="nav-link {if condition="($controller_name eq 'Index') && ($action_name eq 'index')"} active {/if}">
+                        <i class="am-icon-home"></i>
+                        <span>自助下单</span>
+                    </a>
+                </li>
+                <li class="tpl-left-nav-item">
+                    <a href="{:url('index/Chaka/index')}" class="nav-link {if condition="($controller_name eq 'Chaka') "} active {/if}">
+                    <i class="am-icon-eye"></i>
+                    <span>进度查询</span>
+                    </a>
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    {block name="main"}中间内容{/block}
+
+</div>
+
+
+{include file='conmm/foot' /}
+
+{block name="footsrc"}{/block}

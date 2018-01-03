@@ -1,0 +1,4 @@
+<option value="0">请选择商品</option>
+{foreach name="list" item="v"}
+<option value="{$v.id}" >{$v.name}&nbsp;&nbsp;{eq name="$v.type" value='2'}--库存({$v.kucun}){/eq}</option>
+{/foreach}

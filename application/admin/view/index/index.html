@@ -1,0 +1,199 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        系统后台管理
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-home">首页</a></li>
+
+    </ol>
+    <div class="tpl-content-scope">
+        {$systps['data']['html']}
+    </div>
+
+    <div class="row">
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat blue">
+                <div class="visual">
+                    <i class="am-icon-shopping-cart"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$orderCount} </div>
+                    <div class="desc"> 总订单 </div>
+                </div>
+                <a class="more" href="{:url('admin/Order/index')}"> 查看更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat red">
+                <div class="visual">
+                    <i class="am-icon-table"></i>
+                </div>
+                <div class="details">
+                    <div class="number"> {$nowOrder} </div>
+                    <div class="desc"> 今日订单 </div>
+                </div>
+                <a class="more" href="{:url('admin/Order/index')}"> 查看更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat green">
+                <div class="visual">
+                    <i class="am-icon-money"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        {if condition="$moneyCount eq null"}
+                        0
+                        {else /}
+                        {$moneyCount}
+                        {/if} ￥
+                    </div>
+                    <div class="desc"> 总销售额 </div>
+                </div>
+                <a class="more" href="{:url('admin/Order/index')}"> 查看更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+            <div class="dashboard-stat purple">
+                <div class="visual">
+                    <i class="am-icon-money"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        {if condition="$moneyCount eq null"}
+                        0
+                        {else /}
+                        {$nowMoney}
+                        {/if}￥
+                    </div>
+                    <div class="desc"> 今日销售额 </div>
+                </div>
+                <a class="more" href="{:url('admin/Order/index')}"> 查看更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="am-u-md-6 am-u-sm-12 row-mb">
+            <div class="tpl-portlet">
+                <div class="tpl-portlet-title">
+                    <div class="tpl-caption font-green ">
+                        <i class="am-icon-cloud-download"></i>
+                        <span> 系统信息</span>
+                    </div>
+
+                </div>
+
+
+                <div class="tpl-scrollable" >
+                    <table class="am-table tpl-table">
+
+                        <tbody>
+                        <tr>
+                            <td>PHP 版本</td>
+                            <td>{:phpversion()}</td>
+
+                        </tr>
+                        <tr>
+                            <td>本站网址</td>
+                            <td>{$_SERVER['SERVER_NAME']}</td>
+
+                        </tr>
+                        <tr>
+                            <td>服务器软件</td>
+                            <td>{$_SERVER['SERVER_SOFTWARE']}</td>
+
+                        </tr>
+                        <tr>
+                            <td>程序最大运行时间</td>
+                            <td>{:ini_get('max_execution_time')}m</td>
+
+                        </tr>
+                        <tr>
+                            <td>服务器系统</td>
+                            <td>{:php_uname()}</td>
+
+                        </tr>
+                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="am-u-md-6 am-u-sm-12 row-mb">
+            <div class="tpl-portlet">
+                <div class="tpl-portlet-title">
+                    <div class="tpl-caption font-red ">
+                        <i class="am-icon-bar-chart"></i>
+                        <span> 待处理订单</span>
+                    </div>
+                    <div class="actions">
+                        <ul class="actions-btn">
+
+
+                            <a href="{:url('admin/Order/index')}"><li class="dark">去处理</li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tpl-scrollable">
+                    <div class="number-stats">
+                        <div class="stat-number am-fl am-u-md-6">
+                            <div class="title am-text-right"> 待处理 </div>
+                            <div class="number am-text-right am-text-warning"> {$checkOrdernumber} </div>
+                        </div>
+                        <div class="stat-number am-fr am-u-md-6">
+                            <div class="title"> 总订单 </div>
+                            <div class="number am-text-success"> {$orderCount} </div>
+                        </div>
+
+                    </div>
+
+                    <table class="am-table tpl-table">
+                        <thead>
+                        <tr class="tpl-table-uppercase">
+                            <th>订单名称</th>
+                            <th>金额</th>
+                            <th>个数</th>
+                            <th>日期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {foreach name="checkOrderList" item="v"}
+                        <tr>
+                            <td>{$v.oname}</td>
+                            <td>{$v.money}</td>
+                            <td>{$v.number}</td>
+                            <td class="font-green bold">{$v.odate}</td>
+                        </tr>
+                       {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{/block}
+
+

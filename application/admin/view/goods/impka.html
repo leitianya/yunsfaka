@@ -1,0 +1,63 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        导入卡密
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-cogs">导入卡密</a></li>
+
+
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 导入卡密
+            </div>
+
+
+
+        </div>
+        <div class="tpl-block ">
+
+            <div class="am-g tpl-amazeui-form">
+
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <form class="am-form am-form-horizontal" method="post" action="{:url('admin/Goods/impka')}">
+                        <div class="am-form-group">
+                            <label for="kami" class="am-u-sm-3 am-form-label">卡密列表</label>
+                            <div class="am-u-sm-9">
+                                <textarea name="kami" class="" rows="30" id="kami" placeholder="请输入卡号列表，一行一个。如有卡密请按照格式  卡号----卡密 填写，一行一个" required></textarea>
+                                <input type="hidden" value="{$id}" name="id" >
+                            </div>
+                        </div>
+
+
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                <a href="javascript:history.go(-1);" class="am-btn am-btn-warning">返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{/block}

@@ -1,0 +1,125 @@
+{extend name="conmm/main" /}
+
+{block name="main"}
+
+<div class="tpl-content-wrapper">
+    <div class="tpl-content-page-title">
+        商品列表
+    </div>
+    <ol class="am-breadcrumb">
+        <li><a href="" class="am-icon-home">商品列表</a></li>
+
+    </ol>
+    <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 商品列表
+            </div>
+            <div class="tpl-portlet-input tpl-fz-ml">
+
+            </div>
+
+
+        </div>
+        <div class="tpl-block">
+            <div class="am-g">
+
+
+                <div class="am-u-sm-12 am-u-md-6">
+                    <div class="am-btn-toolbar">
+                        <div class="am-btn-group am-btn-group-xs">
+
+                            <button onclick="delAll('{:url(\'admin/Goods/delKami\')}')" type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-close"></span> 删除</button>
+
+                        </div>
+                    </div>
+                </div>
+                <form method="get" action="{:url('admin/Goods/kamilist')}">
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <div class="am-form-group">
+                            <select name="isok" data-am-selected="{btnSize: 'sm'}">
+                                <option value="all">所有类别</option>
+                                <option {eq name="isok" value="0" }selected{/eq} value="0">未售出</option>
+                                <option {eq name="isok" value="1" }selected{/eq} value="1">已售出</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-3">
+                        <div class="am-input-group am-input-group-sm">
+                            <input type="text" name="account" value="{$name}" placeholder="卡号" class="am-form-field">
+                            <input type="hidden" name="id" value="{$id}" >
+                            <span class="am-input-group-btn">
+            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search" type="submit"></button>
+          </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="am-g">
+                <div class="am-u-sm-12">
+
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th class="table-check"><input id="checkAll" type="checkbox" class="tpl-table-fz-check"></th>
+                            <th class="table-id">id</th>
+                            <th class="table-title">卡号</th>
+                            <th class="table-title">卡密</th>
+                            <th class="table-type">所属商品</th>
+                            <th class="table-type">状态</th>
+                            <th class="table-author">导入时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+
+                            {foreach name="list" item="v"}
+                            <td><input type="checkbox" name="checkname" value="{$v.id}"></td>
+                            <td>{$v.id}</td>
+                            <td>{$v.knumber}</td>
+                            <td>{$v.kpasswd}</td>
+                            <td>{$v.gname}</td>
+                            <td>
+                                {if condition="$v['isok'] eq  0"}
+                                <span class="am-badge am-badge-success am-radius">未售出</span>
+                                {else /}
+                                <span class="am-badge am-badge-danger am-radius">已售出</span>
+                                {/if}
+                            </td>
+
+                            <td class="am-hide-sm-only">{$v.ctime|date="Y-m-d H:i",###}</td>
+
+
+
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+
+                        <div class="am-fr">
+                            {$page}
+                        </div>
+                    </div>
+                    <hr>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="tpl-alert"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+{/block}
